@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Q-blog{% endblock %}
+{% block content %}
+<p>Add a new post<a href="{% url 'blogtopic' blogtopic.id %}">{{blogtopic}}</a>
+</p>
+<p>add a new post</p>
+
+<form action="{% url 'new_post' blogtopic.id%}" method='post'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name='submit'>post</button>
+</form>
+
+
+
+{% endblock content %}

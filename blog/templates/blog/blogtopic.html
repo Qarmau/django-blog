@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Q-blog{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <p class="text-uppercase">Hello, {{ user.username }}!</p>
+        <h2 class="display-5 link-body-emphasis mb-1">{{ blogtopic }}</h2>
+        {% for post in blogposts %}
+            <br>
+            <li>
+                <p class="blog-post-meta">
+                    {{ post.created }}<a href="#">
+                </p>
+                <p class="text-uppercase">{{ post.author }}</p>
+            </a>
+            <article class="blog-post">
+                <p>{{ post.blog_post }}</p>
+            </article>
+        </li>
+    {% empty %}
+        <ol>
+            <article class="blog-post">
+                <p>No posts have been added yet</p>
+            </article>
+        </ol>
+        <div class="position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill">
+            <p>
+                <a href="{% url 'new_post' blogtopic.id %}">Add a post</a>
+            </p>
+        </div>
+    {% endfor %}
+{% else %}
+    <a href="{% url 'login' %}">Login to your account to view content</a>
+{% endif %}
+{% endblock content %}

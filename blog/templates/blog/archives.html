@@ -1,0 +1,12 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}
+    Archives
+{% endblock title %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2 class="display-5 link-body-emphasis mb-1">{{ blogtopic }}</h2>
+        Hi {{ user.username }}!
+        <p>No archives have been added yet</p>
+    {% endif %}
+{% endblock content %}
